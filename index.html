@@ -39,17 +39,6 @@
         background: white;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
       }
-      button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: blue;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        z-index: 1000;
-      }
       #iframe-container button {
         position: absolute;
         top: 5px;
@@ -81,12 +70,9 @@
 
     <!-- Kontejner pro iframe -->
     <div id="iframe-container">
-      <iframe src="https://react.dev/" width="100%" height="100%" frameborder="0"></iframe>
+      <iframe id="embedded-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
       <button onclick="closeIframe()">Zavřít</button>
     </div>
-
-    <!-- Tlačítko pro otevření iframe -->
-    <button onclick="openIframe()">Otevřít stránku</button>
 
     <script>
       var canvas = document.querySelector("#unity-canvas");
@@ -157,13 +143,18 @@
 
       document.body.appendChild(script);
 
-      // Funkce pro otevření a zavření iframe
-      function openIframe() {
-        document.getElementById('iframe-container').style.display = 'block';
+      // Funkce pro otevření iframe s URL
+      function openIframeWithURL(url) {
+        var iframe = document.getElementById('embedded-iframe');
+        if (iframe) {
+          iframe.src = url; // Nastavení URL
+          document.getElementById('iframe-container').style.display = 'block'; // Zobrazení iframe
+        }
       }
 
+      // Funkce pro zavření iframe
       function closeIframe() {
-        document.getElementById('iframe-container').style.display = 'none';
+        document.getElementById('iframe-container').style.display = 'none'; // Skrytí iframe
       }
     </script>
   </body>
